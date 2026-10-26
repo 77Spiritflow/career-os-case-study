@@ -145,6 +145,12 @@ section{scroll-margin-top:84px}
 /* ============ 02 用户研究 ============ */
 .personas-banner{width:100%;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;margin-bottom:26px}
 .pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:30px 0}
+.pain-box{background:var(--mint);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-top:24px}
+.pain-box-head{margin-bottom:20px}
+.pain-box-head h4{font-size:17px;font-weight:800;color:var(--green-900);display:flex;align-items:center;gap:10px}
+.pain-box-head h4::before{content:"";width:22px;height:3px;border-radius:2px;background:var(--green-400)}
+.pain-box-head p{font-size:13px;color:var(--ink-2);line-height:1.75;margin-top:8px}
+.pain-box .pain-grid{margin:0}
 .pain-card{border-top:3px solid var(--green-400);padding:20px 22px}
 .pain-card h4{font-size:16.5px;font-weight:700;color:var(--green-900);margin-bottom:7px}
 .pain-card p{font-size:13px;color:var(--ink-2);line-height:1.75}
@@ -328,13 +334,20 @@ section{scroll-margin-top:84px}
 .proc:last-child::after{display:none}
 .screens-title{font-size:16px;font-weight:700;color:var(--green-900);margin-bottom:8px}
 .screens-sub{font-size:13.5px;color:var(--ink-2);margin-bottom:26px}
-.screens-scroll{display:flex;gap:22px;overflow-x:auto;padding:6px 4px 22px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-.screen-item{flex:0 0 226px;scroll-snap-align:start}
+.screens-slider{position:relative;overflow:hidden}
+.screens-track{display:flex;padding:6px 0 10px;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.screen-item{flex:0 0 100%;display:flex;flex-direction:column;align-items:center;min-width:0}
+.screen-item .phone-mini{width:min(226px,58vw)}
+.screens-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:8px}
+.screens-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--green-200);background:#fff;color:var(--green-700);cursor:pointer;display:grid;place-items:center;transition:.2s;flex-shrink:0}
+.screens-nav button:hover{background:var(--green-500);border-color:var(--green-500);color:#fff}
+.screens-nav button:disabled{opacity:.35;cursor:default;background:#fff;color:var(--green-300);border-color:var(--line)}
+.screens-count{font-family:var(--font-grotesk);font-size:13.5px;font-weight:700;color:var(--green-700);min-width:58px;text-align:center;letter-spacing:.05em}
 .phone-mini{position:relative;background:var(--green-900);border-radius:34px;padding:9px;box-shadow:0 18px 44px -16px rgba(20,55,42,.36)}
 .phone-mini .screen{border-radius:26px;overflow:hidden;aspect-ratio:750/1624;background:#fff}
 .phone-mini .screen img{width:100%;height:100%;object-fit:cover}
 .phone-mini .notch{position:absolute;top:7px;left:50%;transform:translateX(-50%);width:86px;height:19px;background:var(--green-900);border-radius:11px}
-.screen-cap{margin-top:13px}
+.screen-cap{margin-top:13px;max-width:360px}
 .screen-cap .s-name{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;color:var(--green-900)}
 .screen-cap .s-name .s-no{font-family:var(--font-grotesk);font-size:10.5px;color:#fff;background:var(--green-500);border-radius:7px;padding:2px 7px;font-weight:700}
 .screen-cap .s-layout{font-size:12px;color:var(--ink-2);margin-top:5px;line-height:1.65}
@@ -472,7 +485,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
   .flow-node::after{display:none}
   .flow-node .f-step{margin-bottom:0}
   .demo-actions{padding:24px}
-  .screen-item{flex-basis:196px}
+  .screen-item .phone-mini{width:min(196px,54vw)}
   .review-grid{grid-template-columns:1fr}
   footer .wrap{flex-direction:column;align-items:flex-start}
   .f-meta{margin-left:auto;text-align:right}
@@ -538,14 +551,22 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 .lb-stage{position:absolute;inset:0;overflow:hidden}
 .lb-stage img{position:absolute;top:0;left:0;max-width:none;transform-origin:0 0;user-select:none;-webkit-user-drag:none;touch-action:none;cursor:grab;transition:transform .12s ease-out}
 .lb-stage img.dragging{cursor:grabbing;transition:none}
-.lb-toolbar{position:absolute;top:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 10px;z-index:2}
+.lb-toolbar{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 10px;z-index:2}
 .lb-toolbar button{width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.18s;font-family:var(--font-grotesk)}
 .lb-toolbar button:hover{background:var(--green-500)}
 .lb-toolbar .lb-zoom-val{color:#fff;font-family:var(--font-grotesk);font-size:12.5px;min-width:44px;text-align:center}
 .lb-close{position:absolute;top:18px;right:18px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer;z-index:2;transition:.18s;display:grid;place-items:center;font-family:var(--font-sans)}
 .lb-close:hover{background:var(--coral)}
-.lb-hint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.72);font-size:12px;background:rgba(0,0,0,.32);padding:7px 16px;border-radius:999px;z-index:2;white-space:nowrap;pointer-events:none}
-@media(max-width:620px){.lb-toolbar{top:12px}.lb-close{top:12px;right:12px}}
+.lb-hint{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.72);font-size:12px;background:rgba(0,0,0,.32);padding:7px 16px;border-radius:999px;z-index:2;white-space:nowrap;pointer-events:none}
+@media(max-width:620px){.lb-toolbar{bottom:12px}.lb-close{top:12px;right:12px}.lb-hint{bottom:70px}}
+
+/* ============ 完整文档入口（占位按钮） ============ */
+.doc-entry{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:linear-gradient(120deg,var(--green-50),#fff 62%);border:1px solid var(--green-200);border-radius:var(--radius);padding:18px 24px;margin-top:24px;box-shadow:0 12px 28px -16px rgba(20,55,42,.30)}
+.doc-entry-t b{font-size:15.5px;font-weight:700;color:var(--green-900);display:block}
+.doc-entry-t span{font-size:12.5px;color:var(--ink-3);margin-top:4px;display:block}
+.doc-entry-b{display:flex;gap:12px;flex-wrap:wrap}
+.doc-entry-b .btn{display:inline-flex;align-items:center;gap:7px}
+@media(max-width:620px){.doc-entry{flex-direction:column;align-items:flex-start}.doc-entry-b{width:100%}.doc-entry-b .btn{flex:1;justify-content:center}}
 
 /* ============ 10 关于我 · 联系 ============ */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -602,6 +623,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       <a href="#prototypes">原型展示</a>
       <a href="#testing">可用性测试</a>
       <a href="#reflection">项目复盘</a>
+      <a href="#about">关于我</a>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="打开菜单">
       <span></span><span></span><span></span>
@@ -630,6 +652,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
     <a href="#prototypes"><span class="d-idx">07</span>原型展示</a>
     <a href="#testing"><span class="d-idx">08</span>可用性测试</a>
     <a href="#reflection"><span class="d-idx">09</span>项目复盘</a>
+    <a href="#about"><span class="d-idx">10</span>关于我</a>
   </div>
   <button class="d-ai" id="drawerAi">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg>
@@ -651,10 +674,31 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M9 4v16"/></svg>Figma · FigJam · X-Mind · VS Code</span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#prototypes">查看 8 大页面原型
+        <!-- 占位链接① 在线体验 Demo —— 已填入 GitHub Pages Demo 链接 -->
+        <a class="btn btn-primary" href="https://77spiritflow.github.io/career-os-demo/" target="_blank" rel="noopener">在线体验 Demo
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
+        <a class="btn btn-ghost" href="#prototypes">查看 8 大页面原型</a>
         <a class="btn btn-ghost" href="#psychology">行为心理学设计</a>
+      </div>
+      <!-- ===== 完整文档入口（占位链接②③，替换 href 后启用） ===== -->
+      <div class="doc-entry reveal">
+        <div class="doc-entry-t">
+          <b>完整设计文档</b>
+          <span>飞书在线完整文档 · PDF 完整版下载，含全部过程稿与设计细节</span>
+        </div>
+        <div class="doc-entry-b">
+          <!-- 占位链接② 飞书完整文档 —— 已填入飞书文档链接 -->
+          <a class="btn btn-ghost" href="https://ccnsmunqu9d6.feishu.cn/docx/KlEydxydxoMhS3xxJzwcq1LfnRO?from=from_copylink" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+            飞书完整文档
+          </a>
+          <!-- 占位链接③ PDF 完整版 —— 已填入 GitHub Release PDF 链接 -->
+          <a class="btn btn-ghost" href="https://github.com/77Spiritflow/career-os-case-study/releases/download/v1.0/Career-OS-UX-case.pdf" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+            下载 PDF 完整版
+          </a>
+        </div>
       </div>
       <div class="hero-stats">
         <div class="stat"><b>8</b><span>核心页面中低保真原型</span></div>
@@ -843,11 +887,17 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       <span class="h-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg></span>
       <div><b>画像假设声明</b><p>本产品用户画像为设计假设，并未先做用户实际调研——这也是本项目最大缺陷之一，需待第八章可用性测试通过真实用户访谈与 Kano 配对题验证与修正。</p></div>
     </div>
+    <div class="pain-box reveal">
+      <div class="pain-box-head">
+        <h4>用户共同困境</h4>
+        <p>以下四个痛点并非某一类用户独有，而是四类画像共享的「用户共同困境」——也是 Career OS 要解决的根本问题。</p>
+      </div>
     <div class="pain-grid">
       <div class="card pain-card reveal"><h4>起点模糊</h4><p>不知道如何开启职业探索，行业岗位信息过载，难以筛选有效内容。</p></div>
       <div class="card pain-card reveal reveal-d1"><h4>行动断层</h4><p>目标过于宏大，无从下手，持续拖延，行动断断续续。</p></div>
       <div class="card pain-card reveal reveal-d2"><h4>成果分散</h4><p>项目、实习、技能记录散落各处，无法直观看见长期成长。</p></div>
       <div class="card pain-card reveal reveal-d3"><h4>情绪内耗</h4><p>独自探索缺少参考案例与正向反馈，容易自我怀疑、中途放弃。</p></div>
+    </div>
     </div>
     <div class="kano reveal">
       <h4>用户需求分层 · Kano 预分类</h4>
@@ -1202,70 +1252,81 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       <h3 class="screens-title">8 个核心页面中低保真原型</h3>
       <p class="screens-sub">每张卡片对应一个页面的布局逻辑与心理学设计巧思</p>
     </div>
-    <div class="screens-scroll">
-      <div class="screen-item reveal">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/IUG8hmLqag" alt="登录页原型" loading="lazy"></div></div>
+    <div class="screens-slider reveal">
+      <div class="screens-track" id="screensTrack">
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/IUG8hmLqag" alt="登录页原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">01</span>注册登录页</div>
           <p class="s-layout">极简单列居中布局，视觉焦点集中在「确认登录」唯一行动点。</p>
           <p class="s-psy"><b>心理学</b>注册仅需手机号（低门槛启动）；「欢迎回来，继续你的职业成长旅程」触发承诺一致。</p>
         </div>
       </div>
-      <div class="screen-item reveal reveal-d1">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/sCeqfL6QH8" alt="首页原型" loading="lazy"></div></div>
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/sCeqfL6QH8" alt="首页原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">02</span>首页</div>
           <p class="s-layout">身份认同 → 目标牵引 → 任务执行；Hero 渐变卡 + 里程碑式进度条 + AI建议/我的安排 Tab。</p>
           <p class="s-psy"><b>心理学</b>「未来的产品设计师」身份暗示（自我效能）；目标梯度效应；实时进度刷新（及时反馈）。</p>
         </div>
       </div>
-      <div class="screen-item reveal reveal-d2">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/7FU54LAtxz" alt="探索页原型" loading="lazy"></div></div>
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/7FU54LAtxz" alt="探索页原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">03</span>职业探索页</div>
           <p class="s-layout">上到下信息流：搜索栏 + 快捷入口 + 岗位推荐卡片 + AI 规划入口 + 测评模块。</p>
           <p class="s-psy"><b>心理学</b>环形百分比进度直观反馈；AI 生成按钮弱化操作压力；模块化卡片降低信息过载。</p>
         </div>
       </div>
-      <div class="screen-item reveal reveal-d3">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/Ks86WwFmeZ" alt="准备页原型" loading="lazy"></div></div>
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/Ks86WwFmeZ" alt="准备页原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">04</span>职业准备页</div>
           <p class="s-layout">职业准备度环形进度卡片 + 2×2 功能卡片 + 底部求职工具双卡片。</p>
           <p class="s-psy"><b>心理学</b>环形进度完成度激励；把庞大求职任务拆解为独立小模块，降低畏难情绪。</p>
         </div>
       </div>
-      <div class="screen-item reveal">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/LTxEOVLUOW" alt="社区页原型" loading="lazy"></div></div>
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/LTxEOVLUOW" alt="社区页原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">05</span>社区页</div>
           <p class="s-layout">顶部标签筛选栏 + 纵向流式卡片信息流，交互控件统一置于卡片底部。</p>
           <p class="s-psy"><b>心理学</b>UGC 真实经验发挥社会认同；标签分类降低筛选成本；点赞收藏满足素材留存心理。</p>
         </div>
       </div>
-      <div class="screen-item reveal reveal-d1">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/SucLr6tYDo" alt="我的页面原型" loading="lazy"></div></div>
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/SucLr6tYDo" alt="我的页面原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">06</span>我的页面</div>
           <p class="s-layout">个人信息头部卡 → 三组量化数据 → 纵向功能菜单，自上而下流转。</p>
           <p class="s-psy"><b>心理学</b>连续学习 / 完成任务 / 掌握技能量化（成长反馈）；损失厌恶提醒坚持；会员入口前置。</p>
         </div>
       </div>
-      <div class="screen-item reveal reveal-d2">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/sAiX8xBUUK" alt="AI对话页原型" loading="lazy"></div></div>
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/sAiX8xBUUK" alt="AI对话页原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">07</span>AI 对话页</div>
           <p class="s-layout">顶部对话主区域 + 底部输入区；核心创新「提示词撰写器」以预设模板替代空白输入框。</p>
           <p class="s-psy"><b>心理学</b>直接解决「不知道问什么」的冷启动，把构思问题转为选择，降低门槛、提升自我效能。</p>
         </div>
       </div>
-      <div class="screen-item reveal reveal-d3">
-        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/wM6THDE4ex" alt="设置页原型" loading="lazy"></div></div>
+      <div class="screen-item">
+        <div class="phone-mini"><div class="notch"></div><div class="screen"><img class="zoomable" src="https://aka.doubaocdn.com/s/wM6THDE4ex" alt="设置页原型"></div></div>
         <div class="screen-cap">
           <div class="s-name"><span class="s-no">08</span>设置页</div>
           <p class="s-layout">通用设置 / 消息通知 / 账号管理 / 隐私与数据安全 / 帮助客服，折叠展开节省空间。</p>
           <p class="s-psy"><b>心理学</b>简洁舒适的体验；每次职业探索的思考过程被有序保存，形成可回溯的成长知识库。</p>
         </div>
+      </div>
+      </div>
+      <div class="screens-nav">
+        <button type="button" class="screens-prev" id="screensPrev" aria-label="上一张">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <span class="screens-count" id="screensCount">1 / 8</span>
+        <button type="button" class="screens-next" id="screensNext" aria-label="下一张">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -1462,7 +1523,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
           <h4>联系我</h4>
           <p>如果你对 Career OS 或我的设计工作感兴趣，欢迎邮件交流。</p>
         </div>
-        <a class="btn btn-primary" href="mailto:your.email@example.com">silin-777@qq.com</a>
+        <a class="btn btn-primary" href="mailto:silin-777@qq.com">silin-777@qq.com</a>
       </div>
     </div>
   </div>
@@ -1681,6 +1742,26 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
   toTop.addEventListener('click', function(){
     window.scrollTo({top: 0, behavior: reduced ? 'auto' : 'smooth'});
   });
+
+  /* ===== 8 大原型轮播（上一张 / 下一张 · 页码） ===== */
+  var screensTrack = document.getElementById('screensTrack');
+  var screensPrev = document.getElementById('screensPrev');
+  var screensNext = document.getElementById('screensNext');
+  var screensCount = document.getElementById('screensCount');
+  if (screensTrack) {
+    var screenItems = screensTrack.children;
+    var si = 0, sn = screenItems.length;
+    function screensGo(i){
+      si = Math.max(0, Math.min(sn - 1, i));
+      screensTrack.style.transform = 'translateX(-' + (si * 100) + '%)';
+      if (screensCount) screensCount.textContent = (si + 1) + ' / ' + sn;
+      if (screensPrev) screensPrev.disabled = (si === 0);
+      if (screensNext) screensNext.disabled = (si === sn - 1);
+    }
+    screensPrev.addEventListener('click', function(){ screensGo(si - 1); });
+    screensNext.addEventListener('click', function(){ screensGo(si + 1); });
+    screensGo(0);
+  }
 
   /* ===== 图片灯箱（点击查看 · 缩放 · 拖动） ===== */
   var lightbox = document.getElementById('lightbox');
